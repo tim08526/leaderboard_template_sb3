@@ -8,3 +8,4 @@ def test_naming():
         env_name = parsed.group(1)
         agent_name = parsed.group(2)
         team = parsed.group(3)
+

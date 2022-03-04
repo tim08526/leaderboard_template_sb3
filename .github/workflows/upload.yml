@@ -3,9 +3,13 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
+  push:
+    branches:
+      - main
+      
   workflow_dispatch:
 
-name: score
+name: check
 
 jobs:
   build:
@@ -13,7 +17,6 @@ jobs:
     if: "! contains(toJSON(github.event.commits.*.message), '[ci skip]')"
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         python-version: [3.8]
@@ -24,23 +27,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies and config file
+    - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        echo "$SHEET_KEY" > config.json
-      env:
-        SHEET_KEY: ${{secrets.SHEET_KEY}}
-    - name: score
+        pip install pandas
+    - name: check naming
       run: |
-        ./run.sh 2>&1 | tee score_log.txt
-    - name: upload
+        make pytest
+    - name: check evaluation
       run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add leaderboard.csv
-          git add score_log.txt
-          git add repo_urls.txt
-          git add nonscored_submissions.txt || :
-          git commit -m 'new scores' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+        python python/score_model.py -d .
 

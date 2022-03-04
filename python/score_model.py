@@ -77,35 +77,14 @@ def main():  # noqa: C901
     leaderboard_csv = "./leaderboard.csv"
 
     for model_name in model_names:
-        try:
-            parsed = re.search("([a-zA-Z]+\-v\d+)\-([A-Z0-9]+)\-(\w+)\.zip", model_name)
-            env_name = parsed.group(1)
-            agent_name = parsed.group(2)
-            team = parsed.group(3)
-        except AttributeError:
-            # Log that the model does not follow naming convention
-            print(f"Incorrect naming on {model_name[2:]}")
-            with open("../nonscored_submissions.txt", "a") as f:
-                f.write(f"{model_name[2:]} -> Improperly named\n")
-            continue
+        parsed = re.search("([a-zA-Z]+\-v\d+)\-([A-Z0-9]+)\-(\w+)\.zip", model_name)
+        env_name = parsed.group(1)
+        agent_name = parsed.group(2)
+        team = parsed.group(3)
+
         hash_url = github_hash_url(model_name, f"{args.dir}")
         hash_file = filehash(model_name)
-        if os.path.exists(leaderboard_csv):
-            leaderboard = pd.read_csv(leaderboard_csv)
-            if hash_file not in leaderboard['hash_file'].values:
-                # If we have not evaluated this exact model before, score it
-                try:
-                    score_model(env_name, agent_name, model_name, team, hash_url, hash_file, file=leaderboard_csv)
-                except Exception as error:
-                    # If there is any error, log it
-                    with open("../nonscored_submissions.txt", "a") as f:
-                        f.write(f"{model_name[2:]} -> {error}\n")
-        else:
-            try:
-                score_model(env_name, agent_name, model_name, team, hash_url, hash_file, file=leaderboard_csv)
-            except Exception as error: 
-                with open("../nonscored_submissions.txt", "a") as f:
-                    f.write(f"{model_name[2:]} -> {error}\n")
+        score_model(env_name, agent_name, model_name, team, hash_url, hash_file, file=leaderboard_csv)
 
 
 if __name__ == "__main__":
