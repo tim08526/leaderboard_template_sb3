@@ -16,7 +16,6 @@ jobs:
     # Skip CI if [ci skip] in the commit message
     if: "! contains(toJSON(github.event.commits.*.message), '[ci skip]')"
     runs-on: ubuntu-latest
-    env:
     strategy:
       matrix:
         python-version: [3.8]
