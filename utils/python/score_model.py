@@ -26,7 +26,6 @@ from stable_baselines3.common.monitor import Monitor
 from github_hash_url import github_hash_url
 from leaderboard import leaderboard, filehash
 import pandas as pd
-# seed = 12345
 
 MODEL = {"PPO": PPO,
          "A2C": A2C,
