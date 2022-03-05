@@ -1,0 +1,5 @@
+gym==0.19.0
+gym-climate==0.0.1
+gym-minigrid==1.0.3
+stable-baselines3==1.4.0
+scipy
