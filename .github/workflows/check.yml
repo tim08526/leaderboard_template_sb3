@@ -30,11 +30,17 @@ jobs:
         pip install pyyaml
         pip install gitpython
         pip install wheel 
-
-    - name: test naming
+        
+    - name: check files
+      run: |
+        -f requirements.txt
+        -f *.zip
+        
+    - name: check naming
       run: |
         make pytest
-    - name: test evaluation
+        
+    - name: check evaluation
       run: |
         python utils/python/score_model.py -d .
 
