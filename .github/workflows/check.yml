@@ -31,10 +31,10 @@ jobs:
         pip install gitpython
         pip install wheel 
 
-    - name: check naming
+    - name: test naming
       run: |
         make pytest
-    - name: check evaluation
+    - name: test evaluation
       run: |
         python utils/python/score_model.py -d .
 
