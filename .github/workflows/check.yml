@@ -33,7 +33,6 @@ jobs:
         
     - name: check files
       run: |
-        -f requirements.txt
         -f *.zip
         
     - name: check naming
