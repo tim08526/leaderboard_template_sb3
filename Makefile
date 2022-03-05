@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 pytest:
-	./utils/scripts/run_tests.sh
+	./utils/scripts/check_naming.sh
 
 freeze:
 	pip freeze > requirements.txt
