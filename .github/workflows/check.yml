@@ -27,6 +27,7 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install pandas
+        pip install pyyaml
     - name: check naming
       run: |
         make pytest
