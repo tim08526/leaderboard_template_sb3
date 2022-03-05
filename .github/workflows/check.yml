@@ -36,5 +36,5 @@ jobs:
         make pytest
     - name: check evaluation
       run: |
-        python python/score_model.py -d .
+        python utils/python/score_model.py -d .
 
