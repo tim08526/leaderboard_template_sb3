@@ -28,7 +28,9 @@ jobs:
         pip install -r requirements.txt
         pip install pandas
         pip install pyyaml
-        pip install pygit
+        pip install gitpython
+        pip install wheels 
+
     - name: check naming
       run: |
         make pytest
