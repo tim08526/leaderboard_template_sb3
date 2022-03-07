@@ -28,11 +28,17 @@ jobs:
         pip install -r requirements.txt
         pip install pandas
         pip install pyyaml
-        pip install pygit
+        pip install gitpython
+        pip install wheel 
+        
+    - name: check files
+      run: |
+        [ -f *.zip ] && echo "Model(s) found" || echo "No model found" && exit 1
+        
     - name: check naming
       run: |
         make pytest
+        
     - name: check evaluation
       run: |
-        python python/score_model.py -d .
-
+        python utils/python/score_model.py -d .
