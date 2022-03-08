@@ -30,7 +30,6 @@ jobs:
         pip install pyyaml
         pip install gitpython
         pip install wheel
-        pip install pytest
         
     - name: check files
       run: |
