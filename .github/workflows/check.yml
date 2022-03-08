@@ -29,11 +29,12 @@ jobs:
         pip install pandas
         pip install pyyaml
         pip install gitpython
-        pip install wheel 
+        pip install wheel
+        pip install pytest
         
     - name: check files
       run: |
-        [ -f *.zip ] && echo "Model(s) found" || echo "No model found" && exit 1
+        ([ -f *.zip ] && echo "Model(s) found") || (echo "No model found" && exit 1)
         
     - name: check naming
       run: |
