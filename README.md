@@ -5,7 +5,7 @@ Note this template repo will only work with agents from [Stable Baselines3](http
 ## Steps to use the template
 
 - [ ] Fork the repo
-- [ ] Save the to-be-submitted SB3 models in place `ENVIRONMENT-AGENT-TEAM_NAME.zip` (and don't forget to `git rm ENVIRONMENT-AGENT-TEAM_NAME.zip`)
+- [ ] Save the to-be-submitted SB3 models in place `ENVIRONMENT-AGENT-TEAM_NAME.zip`, not forgetting to delete `ENVIRONMENT-AGENT-TEAM_NAME.zip` from the repo
 - [ ] Replace `requirements.txt` by running `make freeze`
 - [ ] Check your submission: check naming conventions by running `make pytest`; check files, naming and evaluation via the `check` github action which can be manually triggered (Actions > check > Run Workflow).
 
