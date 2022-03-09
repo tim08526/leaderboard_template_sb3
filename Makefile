@@ -6,4 +6,4 @@ pytest:
 freeze:
 	pip freeze > requirements.txt
 
-.PHONY: freeze commit-checks
+.PHONY: freeze
